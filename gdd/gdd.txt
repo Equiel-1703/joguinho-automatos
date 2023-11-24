@@ -1,0 +1,226 @@
+[Sherlocka]
+Walter, você está atrasado como sempre. No mínimo encheu a cara de chá.
+Houve um assalto nessa residência e achei duas coisas que parecem ser pistas.
+Me diga o que acha.
+
+[Mostra os seguintes objetos para o Walter:
+	- Cuia de mate bagual
+	- Caderno da Wandinha
+
+O jogador pode escolher um deles que ele achar suspeito]
+
+---------------------------------- Rota cuia ----------------------------------
+
+*** ESCOLHEU CUIA: q1
+[Walter]
+Essa cuia parece muito suspeita.
+
+[Sherlocka]
+Humm, tem razão.
+Esse bandido deve gostar muito de um mate... Tem um bailão gaúcho aqui perto. Vamos
+ver se encontramos alguma coisa lá.
+
+[vai pro CTG]
+
+[Sherlocka]
+Walter, encontramos mais duas coisas que podem ser pistas.
+São bem estranhas aliás.
+
+
+[Mostra os seguintes objetos para o Walter:
+	- Bota que usaram pra tomar chimarrão dentro
+	- Gaita que solta fogo
+
+O jogador pode escolher um deles que ele achar suspeito]
+
+*** ESCOLHEU BUTINA: q1 -> q3 [cuia butina]
+[Walter]
+Essa butina aí tá estranha...
+
+[Sherlocka]
+Verdade, quem toma chimarrão assim?
+Pera, já sei! É claro!! O Jorge Tamanco!
+
+[vai ver o Jorge Tamanco]
+
+[Sherlocka]
+Jorge, você está preso por assalto e invasão de propriedade!
+Achamos sua cuia na cena do crime e sua bota com chimarrão no bailão.
+
+[Jorge Tamanco]
+Bah Sherlocka, tá doida? Se eu tomo chimarrão na minha bota, como que essa cuia ia ser minha?
+E outra, essa bota aí é do dono do bailão, ele finalmente tá aprendendo a ser chucro que nem eu e 
+tomando mate bem curtido na butina.
+
+[Sherlocka]
+Er, vocês lavam a bota antes né?
+
+[Jorge Tamanco]
+Só uma fica no meu pé né guria? Como que a outra ia estar suja?
+
+[Sherlocka]
+Ah é, hehe. Desculpa seu Jorge...
+Eu vou já vou indo, tenha um bom dia!
+Walter você é um péssimo detetive!!! Quase prendemos o coitado do Jorge!!
+[GAME OVER]
+
+
+*** ESCOLHEU GAITA: q1 -> q4 [cuia gaita]
+[Walter]
+Essa gaita aí tá é muito suspeita. Esse negócio solta fogo!
+
+[Sherlocka]
+Tem razão, isso certamente foi usado para invadir a residência! Eu lembro de ter visto marcas de queimado pelo casa!
+Mas pra quem nossas pistas apontam? Uma cuia, e uma gaita que solta fogo...
+...
+Já sei! Só podia ser!
+[close]
+O gaiteiro da meia-noite!!
+
+[Walter]
+Ontem na delegacia fizeram uma denúncia dizendo que ouviram sons de gaita tocando Amigo Punk e um incêndio!
+
+[Sherlocka]
+Finalmente ele aprendeu uma música nova. Não aguentava mais Marília Mendonça.
+Pega o endereço e vamos lá!
+
+- Vai onde está o Gaiteiro da Meia Noite -
+[Sherlocka]
+Você está preso gaiteiro! Sabemos que foi você que assaltou aquela casa!
+
+[Gaiteiro]
+Eu estava esperando você, Sherlocka. Finalmente vou me vingar pela última vez!
+Me prenda se puder hahahaha
+
+[start boss battle]
+// DETALHAR COMO VAI SER ISSO //
+
+*** Sherlocka wins: q1 -> q4 -> _q7_
+[Sherlocka]
+A justiça venceu de novo, Walter!
+Obrigada pela sua ajuda, você é um ótimo detetive!
+
+[cena final fofa]
+[YOU WIN]
+
+*** Sherlocka loses: q1 -> q4 -> q8
+[Gaiteiro amarra eles - mostrar isso]
+[Gaiteiro]
+Hahaha, agora sim vocês vão me pagar pela última vez!
+
+[close na Sherlocka]
+[Sherlocka]
+Não me diga que você vai...
+
+[Gaiteiro]
+Sim eu vou...
+[close]
+... tocar Gusttavo Lima - Tchê Tcherere Tchê Tchê
+
+[Sherlocka e Walter]
+NÃOOOOOOOOOOOOOOOOOOOOOOOOOO
+
+[GAME OVER]
+
+---------------------------------- Rota caderno ----------------------------------
+*** ESCOLHEU CADERNO: q2
+[Walter]
+E esse caderno? O que tem nele?
+
+[Sherlocka]
+Tem anotações de aula de música e mais pra frente alguns cálculos.
+Deve ser de alguém que fazia música ou um curso de exatas.
+
+[Walter]
+Tem um campus da UFPel aqui perto. Por que não vamos lá dar uma olhada?
+
+[Sherlocka]
+Boa ideia!
+
+[vai pro Anglo]
+
+[Sherlocka]
+Walter, encontramos mais duas coisas que podem ser pistas por aqui.
+São bem estranhas aliás.
+
+
+[Mostra os seguintes objetos para o Walter:
+	- Bota que usaram pra tomar chimarrão dentro
+	- Gaita que solta fogo
+
+O jogador pode escolher um deles que ele achar suspeito]
+
+*** ESCOLHEU BUTINA: q2 -> q5 [caderno butina]
+[Walter]
+Humm, essa bota é muito estranha.
+
+[Sherlocka]
+Pensei a mesma coisa. Tem que gostar muito de chimarrão pra tomar assim, hein.
+Pera, já sei! O Marilton!!
+Sempre vejo ele tomando chimarrão e ele é professor de computação!
+
+[Walter]
+Eureka!
+
+[vão no CDTec]
+
+[Sherlocka]
+Professor, você está preso por assalto e invasão de propriedade!
+Achamos seu caderno e sua bota de chimarrão.
+
+[Marilton]
+Como assim? Esse caderno não é meu, essa série é muito ruim.
+E eu não tomo chimarrão numa bota, isso é muito estranho.
+Fica bem melhor no chapéu.
+E você não devia estar em aula não, Sherlocka? Me disseram que você já tem 12 faltas.
+
+[Sherlocka]
+Ahh, o pessoal fala pelos cotovelos, professor, hehe.
+Sabe como é hehe.
+Estão me chamando, acho que já vou indo, desculpa o incômodo.
+Walter eu vou te esganar!! Você é um péssimo detetive!
+
+[GAME OVER]
+
+
+*** ESCOLHEU GAITA: q2 -> q6 [caderno gaita]
+[Walter]
+Nossa, que gaita maluca é essa?
+
+[Sherlocka]
+Pois é, esse instrumento é no mínimo exótico.
+Quem será que teria uma gaita assim?
+Humm
+Já sei!! O Ferrugem!!
+Ele dá aula de computação e eu sei que ele tem um proejto sobre gaitas!
+
+[Walter]
+Boa, guria!
+
+[vão no aula do Ferrugem]
+
+[Sherlocka]
+Professor, você está preso por assalto e invasão de propriedade!
+Achamos seu caderno e sua gaita lança-chamas!
+
+[Ferrugem]
+Como é que é? Gente esse caderno não é meu, essa letra é horrível. E como assim gaita?
+
+[Sherlocka]
+Você tem um projeto de gaitas não tem?
+
+[Ferrugem]
+Gaita?
+Ahh, você tá falando do GAIA! hahaha
+Eu não entendo nada de gaita, apesar que eu adoraria ter uma gaita que solta fogo.
+
+[toca a gaita e joga fogo na cara da Sherlocka]
+
+[Ferrugem]
+Ops
+
+[Sherlocka com a cara queimada olhando pro Walter]
+Walter você é um péssimo detetive!
+
+[GAME OVER]
+
