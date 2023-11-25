@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "graphics.h": "c",
+        "windows.h": "c",
+        "interactions.h": "c"
+    }
+}
