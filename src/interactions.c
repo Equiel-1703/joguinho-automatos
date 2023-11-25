@@ -1,6 +1,9 @@
 #include "../include/interactions.h"
 #include "../include/graphics.h"
+#include "../include/console_interface.h"
+
 #include <stdio.h>
+#include <strsafe.h>
 
 // Essa função cria um delay de "tempo" milissegundos
 void timer(int tempoMS)
@@ -37,13 +40,23 @@ void timer(int tempoMS)
     } while (msec < tempoMS);
 }
 
+void proceedWhenKeyIsPressed(wchar_t key, GameThreadArgs *args)
+{
+    while (key != *args->pressed_key)
+    {
+        if (*args->terminateThread)
+            ExitThread(0);
+    }
+}
+
 DWORD WINAPI processTheGame(LPVOID lpParam)
 {
-    process_game_args *args = (process_game_args *)lpParam;
+    GameThreadArgs *args = (GameThreadArgs *)lpParam;
+    int game_state_id = 0;
 
-    while (*args->state_id != 1)
+    while (game_state_id != 2)
     {
-        switch (*args->state_id)
+        switch (game_state_id)
         {
         case 0:
         {
@@ -52,20 +65,39 @@ DWORD WINAPI processTheGame(LPVOID lpParam)
 
             for (int i = 0; i < 3; i++)
             {
-                showImage(args->window, img_2);
+                showImage(args->window, img_2, args->hScreenBitmap);
 
                 timer(500);
 
-                showImage(args->window, img_3);
+                showImage(args->window, img_3, args->hScreenBitmap);
 
                 timer(500);
             }
+
+            proceedWhenKeyIsPressed(' ', args);
+            ++game_state_id;
+
+            StringCbPrintfW(getBuffer(), getBufferSize(), L"Pasou aqui: %d\n", game_state_id);
+            printConsole(getBuffer());
+
+            DeleteObject(img_2);
+            DeleteObject(img_3);
         }
         break;
 
-        default:
-            break;
+        case 1:
+        {
+            printConsole(L"Entrou no case 1");
+            HBITMAP img_1 = loadBitmapHandle(L".\\res\\1.bmp");
+
+            showImage(args->window, img_1, args->hScreenBitmap);
+            ++game_state_id;
         }
+        break;
+        } // End switch
+
+        if (*args->terminateThread)
+            break;
     }
 
     return 0;

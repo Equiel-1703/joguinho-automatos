@@ -2,6 +2,7 @@
     "files.associations": {
         "graphics.h": "c",
         "windows.h": "c",
-        "interactions.h": "c"
+        "interactions.h": "c",
+        "console_interface.h": "c"
     }
 }

@@ -4,13 +4,16 @@
 #include <Windows.h>
 #include <time.h>
 
+// A estrutura foi declarada como volátil para garantir boa comunicação com a thread
 // Posso colocar aqui um campo char para armazenar
 // oq o player digitou e fazer input/output
-typedef struct _process_game_args
+typedef volatile struct _GameThreadArgs
 {
     HWND window;
-    int *state_id;
-} process_game_args;
+    HBITMAP *hScreenBitmap;
+    BOOL *terminateThread;
+    wchar_t *pressed_key;
+} GameThreadArgs;
 
 void timer(int tempoMS);
 DWORD WINAPI processTheGame(LPVOID lpParam);

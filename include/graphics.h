@@ -3,7 +3,10 @@
 
 #include <Windows.h>
 
+#define WND_H 720
+#define WND_W 1280
+
 HBITMAP loadBitmapHandle(LPCWSTR path);
-void showImage(HWND window, HBITMAP hBitmap);
+void showImage(HWND window, HBITMAP hBitmapToDisplay, HBITMAP *hBitmapOnScreen);
 
 #endif
