@@ -44,8 +44,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     wnd_rect.right = WND_W + 50;
     wnd_rect.left = 50;
 
-    DWORD window_styles = WS_SYSMENU | WS_CAPTION | WS_MINIMIZE;
+    DWORD window_styles = WS_SYSMENU | WS_CAPTION | WS_MINIMIZEBOX;
 
+    // Adjust window size to fit the images
     AdjustWindowRect(&wnd_rect, window_styles, FALSE);
 
     StringCbPrintfW(getBuffer(), getBufferSize(), L"%d %d %d %d\n", wnd_rect.bottom, wnd_rect.top, wnd_rect.right, wnd_rect.left);
@@ -78,8 +79,6 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 
     // Inicializa argumentos para a thread
     GameThreadArgs args;
-    args.window = hwnd;
-    args.hScreenBitmap = &hScreenBitmap;
     args.terminateThread = &terminateThread;
     args.pressed_key = &pressed_key;
 
@@ -110,6 +109,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     case WM_CREATE:
 
         hScreenBitmap = NULL;
+        initializeGraphics(hwnd, &hScreenBitmap);
 
         break;
 
@@ -152,6 +152,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
         terminateThread = TRUE;
         WaitForSingleObject(thread_processo_do_jogo, INFINITE);
+        finalizeGraphics();
         CloseHandle(thread_processo_do_jogo);
         DeleteObject(hScreenBitmap);
         PostQuitMessage(0);

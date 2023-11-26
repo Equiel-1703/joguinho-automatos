@@ -7,7 +7,9 @@
 #define WND_W 1280
 
 HBITMAP loadBitmapHandle(LPCWSTR path);
-void showImage(HWND window, HBITMAP hBitmapToDisplay, HBITMAP *hBitmapOnScreen);
-void drawText(HWND window, LPCSTR message);
+void showImage(HBITMAP hBitmapToDisplay);
+void drawText(LPCWSTR message);
+void initializeGraphics(HWND window, HBITMAP *hBtmpScrn);
+void finalizeGraphics();
 
 #endif

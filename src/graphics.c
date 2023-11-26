@@ -1,5 +1,40 @@
 #include "../include/graphics.h"
 
+static HDC window_text_backup = NULL;
+static HDC windowDC = NULL;
+static HWND hWnd = NULL;
+static HFONT hNewFont = NULL;
+static HBITMAP *hBitmapOnScreen = NULL;
+static int wtbSavedDC = 0;
+
+void initializeGraphics(HWND window, HBITMAP *hBtmpScrn)
+{
+    hBitmapOnScreen = hBtmpScrn;
+
+    hWnd = window;
+    windowDC = GetDC(hWnd);
+    window_text_backup = CreateCompatibleDC(windowDC);
+    wtbSavedDC = SaveDC(window_text_backup);
+
+    // Creating font
+    HFONT hFont = GetStockObject(DEFAULT_GUI_FONT);
+    LOGFONT logfont;
+    GetObject(hFont, sizeof(LOGFONT), &logfont);
+
+    // Now change the logfont.lfHeight member
+    logfont.lfHeight = 32;
+
+    HFONT hNewFont = CreateFontIndirect(&logfont);
+}
+
+void finalizeGraphics()
+{
+    DeleteObject(hNewFont);
+    ReleaseDC(hWnd, windowDC);
+    RestoreDC(window_text_backup, wtbSavedDC);
+    DeleteDC(window_text_backup);
+}
+
 HBITMAP loadBitmapHandle(LPCWSTR path)
 {
     HBITMAP bitmap = (HBITMAP)LoadImageW(NULL, path, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
@@ -16,13 +51,13 @@ HBITMAP loadBitmapHandle(LPCWSTR path)
     return bitmap;
 }
 
-void showImage(HWND window, HBITMAP hBitmapToDisplay, HBITMAP *hBitmapOnScreen)
+void showImage(HBITMAP hBitmapToDisplay)
 {
     // Updates handle of the bitmap on screen
     *hBitmapOnScreen = hBitmapToDisplay;
 
     // Pega DC da janela
-    HDC hdc = GetDC(window);
+    HDC hdc = GetDC(hWnd);
     // Cria Device Context de memória da tela do programa (é importante usar isso aqui pra evitar flickering)
     HDC hdcMem = CreateCompatibleDC(hdc);
     // Seleciona o bitmap pra usar na tela
@@ -36,28 +71,38 @@ void showImage(HWND window, HBITMAP hBitmapToDisplay, HBITMAP *hBitmapOnScreen)
     SelectObject(hdcMem, oldBitmap);
     // Deleta hdcMem e solta hdc, não precisamos mais
     DeleteDC(hdcMem);
-    ReleaseDC(window, hdc);
+    ReleaseDC(hWnd, hdc);
 }
 
-void drawText(HWND window, LPCSTR message)
+void drawText(LPCWSTR message)
 {
-    HDC wdc = GetDCEx(window, NULL, DCX_EXCLUDEUPDATE);
-
     RECT rect;
-    GetClientRect(window, &rect);
+    GetClientRect(hWnd, &rect);
 
-    SetTextColor(wdc, 0x00000000);
-    SetBkMode(wdc, TRANSPARENT);
+    // Create bitmap of the current screen
+    HBITMAP hCurrentScreen = CreateCompatibleBitmap(windowDC, rect.right, rect.bottom);
 
+    SetTextColor(window_text_backup, 0x00000000);
+    SetBkMode(window_text_backup, TRANSPARENT);
+
+    HFONT hOldFont = (HFONT)SelectObject(window_text_backup, hNewFont);
+
+    // Coordinates do draw
     rect.left = 50; // x
     rect.top = 555; // y
 
-    HFONT font = CreateFont(18, 0, 0, 0, 300, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, "Arial");
-    HFONT hFontOld = (HFONT)SelectObject(wdc, font);
+    // Select current bitmap on screen to display
+    SelectObject(window_text_backup, hCurrentScreen);
+    // Copies screen to memory DC
+    BitBlt(window_text_backup, 0, 0, WND_W, WND_H, windowDC, 0, 0, SRCCOPY);
 
-    DrawTextA(wdc, message, -1, &rect, DT_SINGLELINE | DT_NOCLIP);
+    // Put text in the memory DC
+    DrawTextW(window_text_backup, message, -1, &rect, DT_SINGLELINE | DT_NOCLIP);
 
-    SelectObject(wdc, hFontOld);
-    DeleteObject(font);
-    DeleteDC(wdc);
+    // Copies memory DC to the window DC back
+    BitBlt(windowDC, 0, 0, WND_W, WND_H, window_text_backup, 0, 0, SRCCOPY);
+
+    // Always select the old font back into the DC
+    SelectObject(windowDC, hOldFont);
+    DeleteObject(hCurrentScreen);
 }

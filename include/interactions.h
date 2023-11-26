@@ -9,8 +9,6 @@
 // oq o player digitou e fazer input/output
 typedef volatile struct _GameThreadArgs
 {
-    HWND window;
-    HBITMAP *hScreenBitmap;
     BOOL *terminateThread;
     wchar_t *pressed_key;
 } GameThreadArgs;

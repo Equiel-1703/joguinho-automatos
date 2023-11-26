@@ -65,11 +65,11 @@ DWORD WINAPI processTheGame(LPVOID lpParam)
 
             for (int i = 0; i < 3; i++)
             {
-                showImage(args->window, img_2, args->hScreenBitmap);
+                showImage(img_2);
 
                 timer(500);
 
-                showImage(args->window, img_3, args->hScreenBitmap);
+                showImage(img_3);
 
                 timer(500);
             }
@@ -90,9 +90,9 @@ DWORD WINAPI processTheGame(LPVOID lpParam)
             printConsole(L"Entrou no case 1");
             HBITMAP img_1 = loadBitmapHandle(L".\\res\\scr_test.bmp");
 
-            showImage(args->window, img_1, args->hScreenBitmap);
+            showImage(img_1);
 
-            drawText(args->window, "Chupa a cabeça da minha pikaa");
+            drawText(L"Chupa a cabeça da minha pikaa");
             ++game_state_id;
         }
         break;
