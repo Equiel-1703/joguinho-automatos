@@ -13,7 +13,7 @@
 static HBITMAP hScreenBitmap;
 static HANDLE thread_processo_do_jogo;
 static BOOL terminateThread = FALSE;
-static wchar_t pressed_key = '0';
+static wchar_t pressed_key = '\0';
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
@@ -131,6 +131,8 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             // Copia região do bitmap a ser reescrita de hdcMem para hdc
             // Como hdc foi criado por BeginPaint, ele contém só a região que precisa ser alterada
             BitBlt(hdc, 0, 0, WND_W, WND_H, hdcMem, 0, 0, SRCCOPY);
+
+            textPaintRoutine(hdc);
 
             // Coloca o bitmap original de volta em hdcMem (exigência da API do Windows)
             SelectObject(hdcMem, oldBitmap);

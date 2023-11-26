@@ -47,6 +47,9 @@ void proceedWhenKeyIsPressed(wchar_t key, GameThreadArgs *args)
         if (*args->terminateThread)
             ExitThread(0);
     }
+
+    // Reset key (not be used anymore)
+    *args->pressed_key = '\0';
 }
 
 DWORD WINAPI processTheGame(LPVOID lpParam)
@@ -54,7 +57,7 @@ DWORD WINAPI processTheGame(LPVOID lpParam)
     GameThreadArgs *args = (GameThreadArgs *)lpParam;
     int game_state_id = 0;
 
-    while (game_state_id != 2)
+    while (game_state_id != 3)
     {
         switch (game_state_id)
         {
@@ -92,10 +95,18 @@ DWORD WINAPI processTheGame(LPVOID lpParam)
 
             showImage(img_1);
 
-            drawText(L"Chupa a cabeça da minha pikaa");
+            drawText(L"Chupa a cabeça da minha pikaa", COLOR_BLACK, TEXT_AREA_X, TEXT_AREA_Y);
+            proceedWhenKeyIsPressed(' ', args);
             ++game_state_id;
         }
         break;
+
+        case 2:
+        {
+            eraseText();
+            drawText(L"uuuuii", COLOR_BLUE, TEXT_AREA_X, TEXT_AREA_Y + 32);
+            ++game_state_id;
+        }
         } // End switch
 
         if (*args->terminateThread)
