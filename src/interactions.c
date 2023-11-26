@@ -88,9 +88,11 @@ DWORD WINAPI processTheGame(LPVOID lpParam)
         case 1:
         {
             printConsole(L"Entrou no case 1");
-            HBITMAP img_1 = loadBitmapHandle(L".\\res\\1.bmp");
+            HBITMAP img_1 = loadBitmapHandle(L".\\res\\scr_test.bmp");
 
             showImage(args->window, img_1, args->hScreenBitmap);
+
+            drawText(args->window, "Chupa a cabeça da minha pikaa");
             ++game_state_id;
         }
         break;

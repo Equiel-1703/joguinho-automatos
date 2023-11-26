@@ -4,6 +4,7 @@
 
 #include <Windows.h>
 #include <strsafe.h>
+#include <dwmapi.h>
 
 #include "../include/graphics.h"
 #include "../include/interactions.h"
@@ -34,27 +35,33 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     // Register the window class.
     RegisterClass(&wc);
 
+    SetProcessDPIAware();
+
     // Configura dimensões da janela
     RECT wnd_rect;
-    wnd_rect.bottom = WND_H;
+    wnd_rect.bottom = WND_H + 50;
     wnd_rect.top = 50;
-    wnd_rect.right = WND_W;
+    wnd_rect.right = WND_W + 50;
     wnd_rect.left = 50;
 
-    AdjustWindowRect(&wnd_rect, WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX, FALSE);
+    DWORD window_styles = WS_SYSMENU | WS_CAPTION | WS_MINIMIZE;
+
+    AdjustWindowRect(&wnd_rect, window_styles, FALSE);
 
     StringCbPrintfW(getBuffer(), getBufferSize(), L"%d %d %d %d\n", wnd_rect.bottom, wnd_rect.top, wnd_rect.right, wnd_rect.left);
+    printConsole(getBuffer());
+    StringCbPrintfW(getBuffer(), getBufferSize(), L"%d %d\n", wnd_rect.bottom - wnd_rect.top, wnd_rect.right - wnd_rect.left);
     printConsole(getBuffer());
 
     // Create the window.
     HWND hwnd = CreateWindowExW(
-        0,                                        // Optional window styles.
-        MAIN_CLASS_NAME,                          // Window class
-        L"Sherlocka & Walter",                    // Window title
-        WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX, // Window style
+        0,                     // Optional window styles.
+        MAIN_CLASS_NAME,       // Window class
+        L"Sherlocka & Walter", // Window title
+        window_styles,         // Window style
 
         // Size and position
-        wnd_rect.left, wnd_rect.top, wnd_rect.right, wnd_rect.bottom,
+        CW_USEDEFAULT, CW_USEDEFAULT, wnd_rect.right - wnd_rect.left, wnd_rect.bottom - wnd_rect.top,
 
         NULL,      // Parent window
         NULL,      // Menu

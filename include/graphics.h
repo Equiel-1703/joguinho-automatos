@@ -8,5 +8,6 @@
 
 HBITMAP loadBitmapHandle(LPCWSTR path);
 void showImage(HWND window, HBITMAP hBitmapToDisplay, HBITMAP *hBitmapOnScreen);
+void drawText(HWND window, LPCSTR message);
 
 #endif
