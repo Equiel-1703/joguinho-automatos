@@ -1,6 +1,6 @@
 [Sherlocka]
 Walter, você está atrasado como sempre. No mínimo encheu a cara de chá.
-Houve um assalto nessa residência e achei duas coisas que parecem ser pistas.
+Houve um assalto nessa residência. Eu achei duas coisas que parecem ser pistas.
 Me diga o que acha.
 
 [Mostra os seguintes objetos para o Walter:
@@ -17,7 +17,7 @@ Essa cuia parece muito suspeita.
 
 [Sherlocka]
 Humm, tem razão.
-Esse bandido deve gostar muito de um mate... Tem um bailão gaúcho aqui perto. Vamos
+Esse bandido deve gostar muito de um mate... Tem um CTG aqui perto. Vamos
 ver se encontramos alguma coisa lá.
 
 [vai pro CTG]

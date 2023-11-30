@@ -7,8 +7,10 @@
 #define WND_W 1280
 
 // Text area
-#define TEXT_AREA_X 50
-#define TEXT_AREA_Y 555
+#define TEXT_AREA_LEFT 50    // X superior-esquerdo
+#define TEXT_AREA_TOP 554    // Y superior-esquerdo
+#define TEXT_AREA_RIGHT 1229 // X inferior-direito
+#define TEXT_AREA_BOTTOM 678 // Y inferior-direito
 
 // Text properties stuff
 #define FONT_SIZE 32
@@ -22,8 +24,9 @@ void finalizeGraphics();
 
 HBITMAP loadBitmapHandle(LPCWSTR path);
 void showImage(HBITMAP hBitmapToDisplay);
+void showImageAnim(HBITMAP hBitmapToDisplay);
 
-void drawText(LPCWSTR message, COLORREF color, int x, int y);
+void drawText(LPCWSTR message, COLORREF color);
 void textPaintRoutine(HDC hdcPaint);
 void eraseText();
 

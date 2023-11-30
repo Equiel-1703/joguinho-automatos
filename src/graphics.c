@@ -1,4 +1,4 @@
-#include "../include/graphics.h"
+#include "..\include\graphics.h"
 
 static HWND hWnd = NULL;
 static HDC windowDC = NULL;
@@ -12,6 +12,8 @@ static HBITMAP hBmpBuffer = NULL;
 static int windowMemDC_Saved = 0;
 
 static BOOL hasTextOnScreen = FALSE;
+
+static RECT textAreaRect;
 
 void initializeGraphics(HWND window, HBITMAP *hBtmpScrn)
 {
@@ -43,6 +45,12 @@ void initializeGraphics(HWND window, HBITMAP *hBtmpScrn)
     logfont.lfHeight = FONT_SIZE;
 
     hNewFont = CreateFontIndirect(&logfont);
+
+    // Initializes rectangle for the text area
+    textAreaRect.bottom = TEXT_AREA_BOTTOM;
+    textAreaRect.left = TEXT_AREA_LEFT;
+    textAreaRect.right = TEXT_AREA_RIGHT;
+    textAreaRect.top = TEXT_AREA_TOP;
 }
 
 void finalizeGraphics()
@@ -93,27 +101,43 @@ void showImage(HBITMAP hBitmapToDisplay)
     DeleteDC(hdcMem);
 }
 
-void drawText(LPCWSTR message, COLORREF color, int x, int y)
+// Mostra imagem só até a text area
+void showImageAnim(HBITMAP hBitmapToDisplay)
+{
+    // Updates handle of the bitmap on screen
+    *hBitmapOnScreen = hBitmapToDisplay;
+
+    // Cria Device Context de memória da tela do programa
+    // Não posso usar o windowMemDC pois ele salva o texto junto, esse é só pra imagem de fundo
+    // É importante usar memory DC's para bitmaps pois evita flickering
+    HDC hdcMem = CreateCompatibleDC(windowDC);
+    // Seleciona o handle do bitmap no hdcMem
+    HGDIOBJ oldBitmap = SelectObject(hdcMem, hBitmapToDisplay);
+
+    // Copia região do bitmap a ser reescrita de hdcMem para windowDC
+    // Como hdc foi criado por BeginPaint, ele contém só a região que precisa ser alterada
+    BitBlt(windowDC, 0, 0, WND_W, TEXT_AREA_TOP - 5, hdcMem, 0, 0, SRCCOPY);
+
+    // Coloca o bitmap original de volta em hdcMem (exigência da API do Windows)
+    SelectObject(hdcMem, oldBitmap);
+    // Deleta hdcMem
+    DeleteDC(hdcMem);
+}
+
+void drawText(LPCWSTR message, COLORREF color)
 {
     hasTextOnScreen = TRUE;
-
-    RECT rect;
-    GetClientRect(hWnd, &rect);
 
     // Setup text
     SetTextColor(windowMemDC, color);
     SetBkMode(windowMemDC, TRANSPARENT);
     HFONT hOldFont = (HFONT)SelectObject(windowMemDC, hNewFont);
 
-    // Coordinates do draw
-    rect.left = x; // x
-    rect.top = y;  // y
-
     // Copies screen data to windowMemDC bitmap buffer
     BitBlt(windowMemDC, 0, 0, WND_W, WND_H, windowDC, 0, 0, SRCCOPY);
 
     // Draw text in windowMemDC bitmap buffer
-    DrawTextW(windowMemDC, message, -1, &rect, DT_SINGLELINE | DT_NOCLIP);
+    DrawTextW(windowMemDC, message, -1, &textAreaRect, DT_WORDBREAK);
 
     // Copy windowMemDC data back to windowDC
     BitBlt(windowDC, 0, 0, WND_W, WND_H, windowMemDC, 0, 0, SRCCOPY);
@@ -133,15 +157,15 @@ void eraseText()
     GetClientRect(hWnd, &rect);
 
     // Coordenadas da área do cliente
-    rect.left = TEXT_AREA_X; // x
-    rect.top = TEXT_AREA_Y;  // y
+    rect.left = TEXT_AREA_LEFT; // x
+    rect.top = TEXT_AREA_TOP;   // y
 
     // Copia a nova tela no hdcMem para a janela (windowDC)
     BitBlt(windowDC,
-           TEXT_AREA_X, TEXT_AREA_Y,
+           TEXT_AREA_LEFT, TEXT_AREA_TOP,
            rect.right - rect.left, rect.bottom - rect.top,
            hdcMem,
-           TEXT_AREA_X, TEXT_AREA_Y, SRCCOPY);
+           TEXT_AREA_LEFT, TEXT_AREA_TOP, SRCCOPY);
 
     // Coloca o bitmap original de volta em hdcMem (exigência da API do Windows)
     SelectObject(hdcMem, oldBitmap);

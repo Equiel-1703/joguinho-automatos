@@ -6,9 +6,9 @@
 #include <strsafe.h>
 #include <dwmapi.h>
 
-#include "../include/graphics.h"
-#include "../include/interactions.h"
-#include "../include/console_interface.h"
+#include "..\include\graphics.h"
+#include "..\include\interactions.h"
+#include "..\include\console_interface.h"
 
 static HBITMAP hScreenBitmap;
 static HANDLE thread_processo_do_jogo;

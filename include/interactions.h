@@ -13,7 +13,6 @@ typedef volatile struct _GameThreadArgs
     wchar_t *pressed_key;
 } GameThreadArgs;
 
-void timer(int tempoMS);
 DWORD WINAPI processTheGame(LPVOID lpParam);
 
 #endif
