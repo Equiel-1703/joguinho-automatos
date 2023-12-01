@@ -16,9 +16,8 @@ O jogador pode escolher um deles que ele achar suspeito]
 Essa cuia parece muito suspeita.
 
 [Sherlocka]
-Humm, tem razão.
-Esse bandido deve gostar muito de um mate... Tem um CTG aqui perto. Vamos
-ver se encontramos alguma coisa lá.
+Humm, tem razão. Esse bandido deve gostar muito de um mate... 
+Tem um bailão gaúcho aqui perto. Vamos ver se encontramos alguma coisa lá.
 
 [vai pro CTG]
 
@@ -125,7 +124,7 @@ NÃOOOOOOOOOOOOOOOOOOOOOOOOOO
 ---------------------------------- Rota caderno ----------------------------------
 *** ESCOLHEU CADERNO: q2
 [Walter]
-E esse caderno? O que tem nele?
+Esse caderno é bem estranho, hein. O que tem nele?
 
 [Sherlocka]
 Tem anotações de aula de música e mais pra frente alguns cálculos.
