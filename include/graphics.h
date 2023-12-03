@@ -18,9 +18,12 @@
 
 #define COLOR_BLACK 0x00000000
 #define COLOR_BLUE 0x00FF0000
+#define COLOR_RED 0xFF000000
 
 void initializeGraphics(HWND window, HBITMAP *hBtmpScrn);
 void finalizeGraphics();
+
+void moveGameWindow(int x, int y);
 
 HBITMAP loadBitmapHandle(LPCWSTR path);
 void showImage(HBITMAP hBitmapToDisplay);

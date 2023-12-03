@@ -68,10 +68,10 @@ Eu já vou indo, tenha um ótimo dia!
 
 *** ESCOLHEU GAITA: q1 -> q4 [cuia gaita]
 [Walter]
-Essa gaita aí tá é muito suspeita. Esse negócio solta fogo!
+Essa gaita aí é muito suspeita. Esse negócio solta fogo!
 
 [Sherlocka]
-Tem razão, isso certamente foi usado para invadir a residência! Eu lembro de ter visto marcas de queimado pelo casa!
+Tem razão, isso certamente foi usado para invadir a residência! Eu lembro de ter visto marcas de queimado pela casa!
 Mas pra quem nossas pistas apontam? Uma cuia, e uma gaita que solta fogo...
 ...
 Já sei! Só podia ser!
@@ -87,14 +87,16 @@ Pega o endereço e vamos lá!
 
 - Vai onde está o Gaiteiro da Meia Noite -
 [Sherlocka]
-Você está preso gaiteiro! Sabemos que foi você que assaltou aquela casa!
+Gaiteiro, aqui é a polícia! Você está preso! Sabemos que foi você que assaltou aquela casa
 
 [Gaiteiro]
-Eu estava esperando você, Sherlocka. Finalmente vou me vingar pela última vez!
+Olá de novo, Sherlocka! Eu estava mesmo esperando por você, o mate até esfriou.
+Finalmente poderemos acertar as contas do nosso último encontro.
+[close]
 Me prenda se puder hahahaha
 
-[start boss battle]
-// DETALHAR COMO VAI SER ISSO //
+[Briga Briga
+pif pow soc tum swoosh]
 
 *** Sherlocka wins: q1 -> q4 -> _q7_
 [Sherlocka]
@@ -161,7 +163,14 @@ Pera, já sei! O Marilton!!
 Sempre vejo ele tomando chimarrão e ele é professor de computação!
 
 [Walter]
-Eureka!
+Vamos no CDTec!
+
+[Sherlocka]
+Espera! Antes de ir, será que não devíamos dar uma investigada naquela cuia? Tô com um pressentimento.
+
+[Jogado escolhe 1 - Sim | 2 Não]
+Se sim: vai pro estado q1.
+Se não: prende o Marilton.
 
 [vão no CDTec]
 
@@ -177,9 +186,8 @@ E você não devia estar em aula não, Sherlocka? Me disseram que você já tem 
 
 [Sherlocka]
 Ahh, o pessoal fala pelos cotovelos, professor, hehe.
-Sabe como é hehe.
-Estão me chamando, acho que já vou indo, desculpa o incômodo.
-Walter eu vou te esganar!! Você é um péssimo detetive!
+Sabe como é, né? hehe.
+Acho que estão me chamando, professor. Melhor eu já ir. Desculpa o incômodo.
 
 [GAME OVER]
 
@@ -197,6 +205,14 @@ Ele dá aula de computação e eu sei que ele tem um proejto sobre gaitas!
 
 [Walter]
 Boa, guria!
+Vamos até a sala dele. Eu sei onde é.
+
+[Sherlocka]
+Ótimo! Mas antes de ir, será que não devíamos dar uma investigada naquela cuia?
+
+[Jogado escolhe 1 - Sim | 2 Não]
+Se sim: vai pro estado q1.
+Se não: prende o Ferrugem.
 
 [vão no aula do Ferrugem]
 

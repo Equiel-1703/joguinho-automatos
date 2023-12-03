@@ -101,6 +101,12 @@ void showImage(HBITMAP hBitmapToDisplay)
     DeleteDC(hdcMem);
 }
 
+void moveGameWindow(int x, int y)
+{
+    SetWindowPos(hWnd, 0, x, y, 0, 0,
+                 SWP_NOZORDER | SWP_NOSIZE | SWP_NOACTIVATE);
+}
+
 // Mostra imagem só até a text area
 void showImageAnim(HBITMAP hBitmapToDisplay)
 {

@@ -20,7 +20,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow)
 {
     // Inicializa console para debug
-    initializeConsole();
+    // initializeConsole();
 
     // Nome da classe
     const wchar_t *MAIN_CLASS_NAME = L"Janela Principal";
@@ -49,10 +49,11 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     // Adjust window size to fit the images
     AdjustWindowRect(&wnd_rect, window_styles, FALSE);
 
-    StringCbPrintfW(getBuffer(), getBufferSize(), L"%d %d %d %d\n", wnd_rect.bottom, wnd_rect.top, wnd_rect.right, wnd_rect.left);
-    printConsole(getBuffer());
-    StringCbPrintfW(getBuffer(), getBufferSize(), L"%d %d\n", wnd_rect.bottom - wnd_rect.top, wnd_rect.right - wnd_rect.left);
-    printConsole(getBuffer());
+    // Verifica se AdjustWindowRect funcionou
+    // StringCbPrintfW(getBuffer(), getBufferSize(), L"%d %d %d %d\n", wnd_rect.bottom, wnd_rect.top, wnd_rect.right, wnd_rect.left);
+    // printConsole(getBuffer());
+    // StringCbPrintfW(getBuffer(), getBufferSize(), L"%d %d\n", wnd_rect.bottom - wnd_rect.top, wnd_rect.right - wnd_rect.left);
+    // printConsole(getBuffer());
 
     // Create the window.
     HWND hwnd = CreateWindowExW(
@@ -147,7 +148,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
     case WM_CHAR:
 
-        pressed_key = (wchar_t)wParam;
+        pressed_key = (wchar_t)towupper(wParam);
 
         break;
 
