@@ -7,10 +7,11 @@
 // A estrutura foi declarada como volátil para garantir boa comunicação com a thread
 // Posso colocar aqui um campo char para armazenar
 // oq o player digitou e fazer input/output
-typedef volatile struct _GameThreadArgs
+typedef struct _GameThreadArgs
 {
-    BOOL *terminateThread;
-    wchar_t *pressed_key;
+    volatile BOOL *terminateThread;
+    volatile wchar_t *pressed_key;
+    volatile HWND hwnd;
 } GameThreadArgs;
 
 DWORD WINAPI processTheGame(LPVOID lpParam);

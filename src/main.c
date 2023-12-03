@@ -81,6 +81,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     GameThreadArgs args;
     args.terminateThread = &terminateThread;
     args.pressed_key = &pressed_key;
+    args.hwnd = hwnd;
 
     // Cria e manda a função que processa o jogo para ser executada em outra thread
     thread_processo_do_jogo = CreateThread(

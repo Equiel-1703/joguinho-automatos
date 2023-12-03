@@ -23,7 +23,7 @@ Tem um bailão gaúcho aqui perto. Vamos ver se encontramos alguma coisa lá.
 
 [Sherlocka]
 Walter, encontramos mais duas coisas que podem ser pistas.
-São bem estranhas aliás.
+São bem estranhas, aliás.
 
 
 [Mostra os seguintes objetos para o Walter:
@@ -37,8 +37,11 @@ O jogador pode escolher um deles que ele achar suspeito]
 Essa butina aí tá estranha...
 
 [Sherlocka]
-Verdade, quem toma chimarrão assim?
+Verdade, quem toma chimarrão assim? Hummm...
 Pera, já sei! É claro!! O Jorge Tamanco!
+
+[Walter]
+Vi ele na cozinha! Vamos lá pegá-lo!
 
 [vai ver o Jorge Tamanco]
 
@@ -48,19 +51,18 @@ Achamos sua cuia na cena do crime e sua bota com chimarrão no bailão.
 
 [Jorge Tamanco]
 Bah Sherlocka, tá doida? Se eu tomo chimarrão na minha bota, como que essa cuia ia ser minha?
-E outra, essa bota aí é do dono do bailão, ele finalmente tá aprendendo a ser chucro que nem eu e 
+E outra, essa bota aí é do dono do bailão, ele finalmente tá aprendendo a ser chucro que nem eu e tá
 tomando mate bem curtido na butina.
 
 [Sherlocka]
 Er, vocês lavam a bota antes né?
 
 [Jorge Tamanco]
-Só uma fica no meu pé né guria? Como que a outra ia estar suja?
+Só uma das botas fica no meu pé, né guria? O outro pé fica sempre limpo.
 
 [Sherlocka]
 Ah é, hehe. Desculpa seu Jorge...
-Eu vou já vou indo, tenha um bom dia!
-Walter você é um péssimo detetive!!! Quase prendemos o coitado do Jorge!!
+Eu já vou indo, tenha um ótimo dia!
 [GAME OVER]
 
 
