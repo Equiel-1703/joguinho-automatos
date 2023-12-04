@@ -31,6 +31,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     wc.hInstance = hInstance;
     wc.lpszClassName = MAIN_CLASS_NAME;
     wc.hCursor = LoadCursor(0, IDC_ARROW);
+    wc.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(100));
 
     // Register the window class.
     RegisterClass(&wc);
