@@ -22,3 +22,11 @@ Esse código é um pouco complexo, no sentido que usa muitos ponteiros, multithr
 
 A maior desvantagem de fazer esse jogo em C certamente foi não ter os recursos da programação orientada a objetos. Isso teria facilitado muita coisa e deixado o código mais limpo. No mais, foi uma experiência incrível que me ensinou muita coisa nova.
 
+## Compilando
+Se você quiser compilar o jogo manualmente, você precisará do compilador Microsoft Visual C++ (MSVC). Ele vem junto com o Microsoft Build Tools, que você pode instalar com [Visual Studio Installer](https://visualstudio.microsoft.com/downloads/):
+
+![Print_VSInstaller](https://github.com/Equiel-1703/joguinho-automatos/assets/96885946/648c8515-a3b8-4e8e-8577-0ee944ebb67f)
+
+Com essas ferramentas instaladas, você deverá abrir o Developer Command Prompt (não é o CMD normal do Windows, esse é o que vem com o Build Tools) e executar o .bat na pasta do jogo com a configuração que você desejar. Eu fiz dois: build-debug.bat e build-release.bat.
+
+A diferença entre eles é que o debug gera um executável mais pesado (e menos otimizado) porque possui informações extras no binário para debugar e corrigir erros. O release gera um executável mais otimizado e leve, esse é para gerar o produto final mesmo.
